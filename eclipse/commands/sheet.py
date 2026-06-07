@@ -52,7 +52,21 @@ class CmdSheet(Command):
         ]
 
         augs = list(caller.augmentations)
-        aug_text = ", ".join(str(aug) for aug in augs) if augs else "None"
-        lines.append(f"|cAugmentations:|n {aug_text}")
+        lines.append("|cAugmentations:|n")
+        if augs:
+            aug_table = EvTable("Piece", "Slot", "Mods", border="cells")
+            total_cost = 0
+            for aug in augs:
+                mod_text = ", ".join(f"{key} {delta:+d}" for key, delta in aug.mods.items())
+                aug_table.add_row(aug.key, aug.slot, mod_text or "-")
+                total_cost += aug.humanity_cost
+            lines.append(str(aug_table))
+            lines.append(f"Total Humanity spent on chrome: {total_cost}")
+        else:
+            lines.append("None")
+
+        obsessions = caller.tags.get(category="obsession", return_list=True)
+        if obsessions:
+            lines.append(f"|rObsession:|n {', '.join(sorted(obsessions))}")
 
         caller.msg("\n".join(lines))

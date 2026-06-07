@@ -14,6 +14,7 @@ own cmdsets by inheriting from them or directly from `evennia.CmdSet`.
 
 """
 
+from commands.cyberware_cmds import CmdInstall, CmdRemove
 from commands.setclass import CmdSetClass
 from commands.sheet import CmdSheet
 
@@ -39,6 +40,8 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
         #
         self.add(CmdSheet())
         self.add(CmdSetClass())
+        self.add(CmdInstall())
+        self.add(CmdRemove())
 
 
 class AccountCmdSet(default_cmds.AccountCmdSet):

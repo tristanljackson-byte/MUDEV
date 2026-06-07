@@ -7,6 +7,7 @@ gauge, and a Class identity drawn from :mod:`world.classes`.
 """
 
 from world import classes
+from world.cyberware_handler import CyberwareHandler
 
 from evennia.contrib.rpg.traits import TraitHandler
 from evennia.objects.objects import DefaultCharacter
@@ -51,6 +52,15 @@ class Character(ObjectParent, DefaultCharacter):
             TraitHandler: The handler bound to this Character.
         """
         return TraitHandler(self)
+
+    @lazy_property
+    def cyberware(self):
+        """Handler managing this Runner's installed cyberware.
+
+        Returns:
+            CyberwareHandler: The handler bound to this Character.
+        """
+        return CyberwareHandler(self)
 
     def at_object_creation(self):
         """Initialise a new Runner's traits and Humanity gauge.
@@ -158,10 +168,7 @@ class Character(ObjectParent, DefaultCharacter):
     def augmentations(self):
         """Installed augmentations (cyberware).
 
-        Returns an empty list for now; the Cyberware issue will populate
-        this. Present so the sheet command can call it safely.
-
         Returns:
-            list: The installed augmentations (currently always empty).
+            list: The cyberware pieces currently installed on this Runner.
         """
-        return []
+        return self.cyberware.installed_pieces

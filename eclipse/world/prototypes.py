@@ -88,3 +88,46 @@ See the `spawn` command and `evennia.prototypes.spawner.spawn` for more info.
 # "key": "goblin archwizard",
 # "prototype_parent" : ("GOBLIN_WIZARD", "ARCHWIZARD_MIXIN")
 # }
+
+
+# -- Cyberware (Issue #2) ------------------------------------------------
+#
+# Each prototype is a spawnable Cyberware piece. The `slot`, `humanity_cost`
+# and `mods` Attributes drive the CyberwareHandler; no per-piece branching is
+# needed.
+
+WIRED_REFLEXES = {
+    "key": "wired reflexes",
+    "typeclass": "typeclasses.cyberware.Cyberware",
+    "slot": "nervous",
+    "humanity_cost": 2,
+    "mods": {"reaction": 2, "agility": 1},
+    "desc": "Boosted nerve conduits that sharpen reaction and agility.",
+}
+
+CYBEREYES = {
+    "key": "cybereyes",
+    "typeclass": "typeclasses.cyberware.Cyberware",
+    "slot": "eyes",
+    "humanity_cost": 1,
+    "mods": {"intuition": 1, "perception": 1},
+    "desc": "Optical implants that enhance perception and intuition.",
+}
+
+DERMAL_PLATING = {
+    "key": "dermal plating",
+    "typeclass": "typeclasses.cyberware.Cyberware",
+    "slot": "skin",
+    "humanity_cost": 2,
+    "mods": {"body": 1},
+    "desc": "Subdermal armour plates that toughen the body.",
+}
+
+SMARTLINK = {
+    "key": "smartlink",
+    "typeclass": "typeclasses.cyberware.Cyberware",
+    "slot": "arms",
+    "humanity_cost": 1,
+    "mods": {"firearms": 1},
+    "desc": "A targeting interface that improves firearms accuracy.",
+}
