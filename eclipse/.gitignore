@@ -1,0 +1,24 @@
+# Evennia game-dir ignores (secrets, local DB, runtime artifacts).
+# Keep secrets and local state OUT of version control.
+
+# Local secret settings (contains SECRET_KEY and any local overrides)
+server/conf/secret_settings.py
+
+# Databases
+*.db3
+server/*.db3
+
+# Server runtime artifacts
+server/logs/*
+!server/logs/README.md
+*.pid
+*.restart
+
+# Python
+*.pyc
+__pycache__/
+
+# Env files (never commit)
+.env
+.env.*
+!.env.example
